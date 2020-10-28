@@ -34,7 +34,7 @@ class Migration(migrations.Migration):
                 ('created', models.DateTimeField(auto_now_add=True, help_text='Date time on which the object was created.', verbose_name='created at')),
                 ('modified', models.DateTimeField(auto_now=True, help_text='Date time on which the object was last modified', verbose_name='modified at')),
                 ('email', models.EmailField(error_messages={'unique': 'The mail is already in use. It must be unique'}, max_length=254, unique=True, verbose_name='email address')),
-                ('phone_number', models.CharField(blank=True, max_length=17, validators=[django.core.validators.RegexValidator(message='Phone number must be entered in the format : +999999999. Up to 15 digits allowed.', regex='\\+?1?\\d{9,15]$')])),
+                ('phone_number', models.CharField(blank=True, max_length=17, validators=[django.core.validators.RegexValidator(message='Phone number must be entered in the format : +999999999. Up to 15 digits allowed.', regex='\\+?1?\\d{9,15}$')])),
                 ('is_client', models.BooleanField(default=True, help_text='Help easly distinguish users and perform queries.Clients are the main type of user.', verbose_name='client status')),
                 ('is_verified', models.BooleanField(default=True, help_text='Set to true when the user have verified its email address', verbose_name='verified')),
                 ('groups', models.ManyToManyField(blank=True, help_text='The groups this user belongs to. A user will get all permissions granted to each of their groups.', related_name='user_set', related_query_name='user', to='auth.Group', verbose_name='groups')),
