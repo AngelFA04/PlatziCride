@@ -12,14 +12,14 @@ from cride.utils.models import CRideModel
 class User(CRideModel, AbstractUser):
     """User model.
 
-    Extend from Django Abstract User, change the username field to 
+    Extend from Django Abstract User, change the username field to
     email and add some extra fields.
     """
     email = models.EmailField(
-        'email address', 
-        unique=True, 
+        'email address',
+        unique=True,
         error_messages={'unique': 'The mail is already in use. It must be unique'},
-                
+
         )
 
     phone_regex = RegexValidator(
@@ -42,7 +42,7 @@ class User(CRideModel, AbstractUser):
 
     is_verified = models.BooleanField(
         'verified',
-        default=True,
+        default=False,
         help_text = 'Set to true when the user have verified its email address'
     )
 

@@ -32,7 +32,7 @@ class Circle(CRideModel):
 
     is_public = models.BooleanField(
         default=True,
-        help_text = 'Public circles are listed in the main page so everyone learn about their experiences',
+        help_text = 'Public circles are listed in the main page so everyone know about their experiences',
     )
 
     is_limited = models.BooleanField(
@@ -44,7 +44,7 @@ class Circle(CRideModel):
 
     members_limit = models.PositiveIntegerField(
         default=0,
-        help_text='If circle is limited, this will be the limit on the numberof memebers.'
+        help_text='If circle is limited, this will be the limit on the number of members.'
 
     )
 
