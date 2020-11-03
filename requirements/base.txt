@@ -2,13 +2,17 @@
 pytz==2018.7
 python-slugify==1.2.6
 Pillow==5.3.0
-psycopg2==2.7.4 --no-binary psycopg2
+psycopg2>=2.7.4 --no-binary psycopg2
+#p sycopg2-binary==2.8.6
 
 # Django
 django>=2.0.10
 
 #Django Rest Framework
 djangorestframework>=3.11.0
+
+# JWT
+pyjwt>=1.7.1
 
 # Environment
 django-environ==0.4.5
