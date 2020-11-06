@@ -22,7 +22,7 @@ class UserLoginAPIView(APIView):
         user, token = serializer.save()
         data = {
             'user': UserModelSerializer(user).data,
-            'acces_token': token
+            'access_token': token
         }
         return Response(data, status=status.HTTP_201_CREATED)
 
