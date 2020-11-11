@@ -46,7 +46,7 @@ class CircleModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Circle
         fields = (
-            'id', 'name', 'slug_name',
+            'name', 'slug_name',
             'about', 'picture', 'rides_offered',
             'rides_taken', 'verified', 'is_public',
             'is_limited', 'members_limit',

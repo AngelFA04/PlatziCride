@@ -1,17 +1,18 @@
 """User URLS."""
 
 # Django
-from django.urls import path
+from django.urls import path, include
+
+# DRF
+from rest_framework import routers
+
 
 # Views
-from cride.users.views import (
-                               UserLoginAPIView,
-                               UserSignupAPIView,
-                               AccountVerificationAPIView
-                              )
+from cride.users.views import UserViewSet
+
+router = routers.DefaultRouter()
+router.register(r'users',UserViewSet, basename='user')
 
 urlpatterns = [
-    path('users/login/', UserLoginAPIView.as_view(), name='login'),
-    path('users/signup/', UserSignupAPIView.as_view(), name='signup'),
-    path('users/verify/', AccountVerificationAPIView.as_view(), name='signup'),
+    path('',include(router.urls)),
 ]
