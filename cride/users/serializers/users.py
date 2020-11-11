@@ -16,6 +16,9 @@ from rest_framework.validators import UniqueValidator
 # Models
 from cride.users.models import User, Profile
 
+# Serializes
+from cride.users.serializers.profile import ProfileModelSerializer
+
 # Utilities
 from datetime import timedelta
 import jwt
@@ -25,6 +28,7 @@ import jwt
 class UserModelSerializer(serializers.ModelSerializer):
     """User model serializer."""
 
+    profile = ProfileModelSerializer(read_only=True)
     class Meta:
         """Meta class."""
 
@@ -34,8 +38,8 @@ class UserModelSerializer(serializers.ModelSerializer):
             'first_name',
             'last_name',
             'email',
-            'phone_number'
-
+            'phone_number',
+            'profile'
         )
 
 
@@ -110,7 +114,7 @@ class UserSignUpSerializer(serializers.Serializer):
 
     def create(self, data):
         data.pop('password_confirmation')
-        user = User.objects.create_user(**data)
+        user = User.objects.create_user(**data, is_client=True)
         Profile.objects.create(user=user)
         self.send_confirmation_email(user)
         return user
