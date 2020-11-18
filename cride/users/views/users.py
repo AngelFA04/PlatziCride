@@ -7,7 +7,11 @@ from rest_framework.response import Response
 from rest_framework.decorators import action
 
 # Serializers
-from cride.users.serializers import UserModelSerializer, ProfileModelSerializer
+from cride.users.serializers import (UserModelSerializer,
+                                     ProfileModelSerializer,
+                                     AccountVerificationSerializer,
+                                     UserLoginSerializer)
+
 from cride.circles.serializers import CircleModelSerializer
 
 # Permissions
@@ -65,7 +69,6 @@ class UserViewSet(mixins.RetrieveModelMixin,
         serializer.save()
 
         data = UserModelSerializer(user).data
-        print(data)
         return Response(data)
 
     @action(detail=False, methods=['post'])
