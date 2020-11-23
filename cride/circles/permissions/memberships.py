@@ -4,7 +4,7 @@
 from rest_framework.permissions import BasePermission
 
 # Models
-from cride.circles.models import Membership
+from cride.circles.models import Membership, Invitation
 
 class IsActiveCircleMember(BasePermission):
     """Allow access only to circle members
@@ -47,3 +47,33 @@ class IsAdminOrMembershipOwner(BasePermission):
         except Membership.DoesNotExist:
             return False
         return True
+
+
+# class IsSelfMember(BasePermission):
+#     """Allow access only to the invitation owner"""
+
+#     def has_object_permission(self, request, view, obj):
+#         """Verify user is owner of invitation in the obj."""
+#         try:
+#             Invitation.objects.get(
+#                 issued_by=request.user,
+#                 circle=obj
+#             )
+#         except Invitation.DoesNotExist:
+#             return False
+#         return True
+#     pass
+
+
+class IsSelfMember(BasePermission):
+    """Allow access only to the invitation owner"""
+
+    def has_permission(self, request, view):
+        """Let object permission grant access."""
+        obj = view.get_object()
+        return self.has_object_permission(request, view, obj)
+
+    def has_object_permission(self, request, view, obj):
+        """Verify user is owner of invitation in the obj."""
+
+        return request.user == obj.user

@@ -63,19 +63,3 @@ class CircleModelSerializer(serializers.ModelSerializer):
         if is_limited ^ bool(members_limit):
             raise serializers.ValidationError('If circle is limited, a member limit must be provided')
         return data
-
-
-class MembershipModelSerializer(serializers.ModelSerializer):
-    """Membership model serializer."""
-
-    user = UserModelSerializer(read_only=True)
-    invited_by = serializers.StringRelatedField()
-    joined_at = serializers.DateTimeField(source='created', read_only=True)
-    class Meta:
-        model = Membership
-        fields = ('user', 'is_admin', 'is_active', 'used_invitations',
-                  'remaining_invitations',
-                  'invited_by', 'rides_taken', 'rides_offered',
-                  'joined_at')
-
-        read_only_fields = ('user', 'used_invitations', 'invited_by', 'rides_taken', 'rides_offered')

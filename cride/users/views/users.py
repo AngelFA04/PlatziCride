@@ -10,6 +10,7 @@ from rest_framework.decorators import action
 from cride.users.serializers import (UserModelSerializer,
                                      ProfileModelSerializer,
                                      AccountVerificationSerializer,
+                                     UserSignUpSerializer,
                                      UserLoginSerializer)
 
 from cride.circles.serializers import CircleModelSerializer
